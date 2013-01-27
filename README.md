@@ -1,0 +1,1 @@
+A very simple python script to create a diary of notes on the CLI with one file a day. The purpose would be to add a few commands little by little.
