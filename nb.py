@@ -7,8 +7,8 @@ import cmd
 
 # CHANGE THE USER directory
 # For example on a mac if the username is foobar
-# ROOT = "/Users/foobar/Documents"
-ROOT = "MyPathToChange"
+# ROOT = "/Users/foobar/Documents/"
+ROOT = "MyPathToChange/"
 NOTENAME = "notes.md"
 
 
