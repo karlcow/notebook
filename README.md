@@ -19,3 +19,20 @@ Typing
 will save the following message in notes.md
 
     2013-01-27 18:50:01,346 - Moved nb.py to its own repository at https://github.com/karlcow/notebook
+
+### help ###
+
+    log> help
+
+    Documented commands (type help `<topic>`):
+    ========================================
+    here
+
+    Undocumented commands:
+    ======================
+    EOF  help
+
+    log> help here
+    return the current location.
+            If a `<keyword>` is given return the location for this key.
+    log> 
