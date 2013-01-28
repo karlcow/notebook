@@ -43,11 +43,12 @@ class NoteBook(cmd.Cmd):
         return cmd.Cmd.precmd(self, line)
 
     def do_here(self, keyword):
-        "return the location on here"
+        """return the current location.
+        If a <keyword> is given return the location for this key."""
         if keyword:
             # should convert a keyword into the location info
             # to define
-            pass
+            print u"Feature not ready yet"
         else:
             location = doko.location()
             latitude = location.latitude
