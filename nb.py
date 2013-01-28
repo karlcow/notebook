@@ -4,14 +4,14 @@ import datetime
 import os.path
 import logging
 import cmd
+import yaml
 
 # requirements.txt
 import doko
 
-# CHANGE THE USER directory
-# For example on a mac if the username is foobar
-# ROOT = "/Users/foobar/Documents/"
-ROOT = "MyPathToChange/"
+# CHANGE ROOT if you want it to be elsewhere
+ROOT = os.path.expanduser('~/Documents/')
+LANDMARK_FILE = os.path.expanduser('~/.doko_landmarks')
 NOTENAME = "notes.md"
 
 
@@ -46,11 +46,22 @@ class NoteBook(cmd.Cmd):
         """return the current location.
         If a <keyword> is given return the location for this key."""
         if keyword:
-            # should convert a keyword into the location info
-            # to define
-            print u"Feature not ready yet"
+            # convert a keyword into the location info if known
+            if os.path.exists(LANDMARK_FILE):
+                f = open(LANDMARK_FILE)
+                locationdata = yaml.safe_load(f)
+                f.close()
+                if locationdata[keyword]:
+                    latitude, longitude = locationdata[keyword][0], locationdata[keyword][1]
+                    logging.info("Location: {latitude}, {longitude}".format(
+                        latitude=latitude,
+                        longitude=longitude
+                        ))
+                else:
+                    print u'location %s unknown' % (keyword)
         else:
-            location = doko.location()
+            # adding location through corelocation on MacOSX
+            location = doko.location('corelocation')
             latitude = location.latitude
             longitude = location.longitude
             print u'location= %s,%s' % (latitude, longitude)
