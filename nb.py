@@ -5,6 +5,9 @@ import os.path
 import logging
 import cmd
 
+# requirements.txt
+import doko
+
 # CHANGE THE USER directory
 # For example on a mac if the username is foobar
 # ROOT = "/Users/foobar/Documents/"
@@ -34,8 +37,26 @@ class NoteBook(cmd.Cmd):
         if not os.path.exists(notedir):
             os.makedirs(notedir)
         # if the file for notes today doesn't exist, create it.
-        logging.basicConfig(filename=notepath, level=logging.INFO, format='%(asctime)s - %(message)s')
+        logging.basicConfig(filename=notepath,
+                            level=logging.INFO,
+                            format='%(asctime)s - %(message)s')
         return cmd.Cmd.precmd(self, line)
+
+    def do_here(self, keyword):
+        "return the location on here"
+        if keyword:
+            # should convert a keyword into the location info
+            # to define
+            pass
+        else:
+            location = doko.location()
+            latitude = location.latitude
+            longitude = location.longitude
+            print u'location= %s,%s' % (latitude, longitude)
+            logging.info("Location: {latitude}, {longitude}".format(
+                latitude=latitude,
+                longitude=longitude
+                ))
 
     def default(self, line):
         if line:
