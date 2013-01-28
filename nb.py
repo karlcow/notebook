@@ -61,7 +61,6 @@ class NoteBook(cmd.Cmd):
 
     def default(self, line):
         if line:
-            print datetime.date.today().isoformat(), line
             addcontent(line)
 
     def do_EOF(self, line):
