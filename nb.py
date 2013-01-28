@@ -51,14 +51,14 @@ class NoteBook(cmd.Cmd):
                 f = open(LANDMARK_FILE)
                 locationdata = yaml.safe_load(f)
                 f.close()
-                if locationdata[keyword]:
+                try:
                     latitude, longitude = locationdata[keyword][0], locationdata[keyword][1]
                     logging.info("Location: {latitude}, {longitude}".format(
                         latitude=latitude,
                         longitude=longitude
                         ))
-                else:
-                    print u'location %s unknown' % (keyword)
+                except Exception, e:
+                    print u'location %s unknown' % (e)
         else:
             # adding location through corelocation on MacOSX
             location = doko.location('corelocation')
