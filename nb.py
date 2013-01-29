@@ -48,9 +48,8 @@ class NoteBook(cmd.Cmd):
         if keyword:
             # convert a keyword into the location info if known
             if os.path.exists(LANDMARK_FILE):
-                f = open(LANDMARK_FILE)
-                locationdata = yaml.safe_load(f)
-                f.close()
+                with open(LANDMARK_FILE, 'r') as f:
+                    locationdata = yaml.safe_load(f)
                 try:
                     latitude, longitude = locationdata[keyword][0], locationdata[keyword][1]
                     logging.info("Location: {latitude}, {longitude}".format(
