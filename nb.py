@@ -61,8 +61,7 @@ class NoteBook(cmd.Cmd):
         else:
             # adding location through corelocation on MacOSX
             location = doko.location('corelocation')
-            latitude = location.latitude
-            longitude = location.longitude
+            latitude, longitude, source = location
             print u'location= %s,%s' % (latitude, longitude)
             logging.info("Location: {latitude}, {longitude}".format(
                 latitude=latitude,
