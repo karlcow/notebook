@@ -51,7 +51,7 @@ class NoteBook(cmd.Cmd):
                 with open(LANDMARK_FILE, 'r') as f:
                     locationdata = yaml.safe_load(f)
                 try:
-                    latitude, longitude = locationdata[keyword][0], locationdata[keyword][1]
+                    latitude, longitude = locationdata[keyword]
                     logging.info("Location: {latitude}, {longitude}".format(
                         latitude=latitude,
                         longitude=longitude
